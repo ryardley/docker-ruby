@@ -24,8 +24,10 @@ RUN cd /tmp &&\
     make install &&\
     ruby-install ruby 2.1.2
 
+# Add Ruby binaries to $PATH
+ENV PATH /opt/rubies/ruby-2.1.2/bin:$PATH
+
 RUN echo "gem: --no-document" > ~/.gemrc
 RUN gem install bundler
 
-# Add Ruby binaries to $PATH
-ENV PATH /opt/rubies/ruby-2.1.2/bin:$PATH
+
