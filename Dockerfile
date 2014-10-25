@@ -15,16 +15,17 @@ RUN apt-get update &&\
     libsqlite3-dev \
     sqlite3 \
     libxml2-dev \
-    libxslt1-dev &&\
-    apt-get update &&\
-    cd /tmp &&\
+    libxslt1-dev
+
+RUN cd /tmp &&\
     wget -O ruby-install-0.4.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.4.3.tar.gz &&\
     tar -xzvf ruby-install-0.4.3.tar.gz &&\
     cd ruby-install-0.4.3/ &&\
     make install &&\
-    ruby-install ruby 2.1.2 &&\
-    echo "gem: --no-document" > ~/.gemrc &&\
-    gem install bundler
+    ruby-install ruby 2.1.2
+
+RUN echo "gem: --no-document" > ~/.gemrc
+RUN gem install bundler
 
 # Add Ruby binaries to $PATH
 ENV PATH /opt/rubies/ruby-2.1.2/bin:$PATH
